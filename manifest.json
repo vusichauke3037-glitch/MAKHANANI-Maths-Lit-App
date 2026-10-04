@@ -1,0 +1,14 @@
+{
+    "name": "MAKHANANI Maths Lit",
+    "short_name": "MAKHANANI",
+    "description": "CAPS Paper 1 - Vukona Press by Vusi Chauke",
+    "start_url": "./makhanani.html",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#f59e0b",
+    "icons": [{
+        "src": "https://via.placeholder.com/512/f59e0b/000000?text=M",
+        "sizes": "512x512",
+        "type": "image/png"
+    }]
+}

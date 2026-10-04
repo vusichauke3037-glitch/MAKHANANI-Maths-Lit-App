@@ -1,14 +1,14 @@
 {
   "name": "MAKHANANI Maths Lit",
   "short_name": "Makhanani",
-  "description": "CAPS Paper 1 Calculators - Interest, VAT, Average, Budget - Vukona Press",
+  "description": "CAPS Paper 1 - Simple Interest, VAT, Average, Budget - Vukona Press",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0a3d62",
   "theme_color": "#0a3d62",
   "icons": [
     {
-      "src": "https://via.placeholder.com/512.png?text=M",
+      "src": "https://via.placeholder.com/512x512.png?text=MP",
       "sizes": "512x512",
       "type": "image/png"
     }

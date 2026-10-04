@@ -1,14 +1,5 @@
-self.addEventListener('install', function(e) {
-  e.waitUntil(
-    caches.open('makhanani-v1').then(function(cache) {
-      return cache.addAll(['./makhanani.html']);
-    })
-  );
-});
-self.addEventListener('fetch', function(e) {
-  e.respondWith(
-    caches.match(e.request).then(function(r) {
-      return r || fetch(e.request);
-    })
-  );
+self.addEventListener('install', e => self.skipWaiting());
+self.addEventListener('activate', e => self.clients.claim());
+self.addEventListener('fetch', e => {
+  e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));
 });

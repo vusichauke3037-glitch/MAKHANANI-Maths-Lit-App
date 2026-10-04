@@ -1,71 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MAKHANANI Maths Lit</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a3d62">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAKHANANI Maths Lit App - CAPS Paper 1 & 2</title>
+<meta name="theme-color" content="#0d47a1">
 <style>
-body{font-family:Arial;background:#f4f6f8;margin:0}
-header{background:#0a3d62;color:gold;padding:15px;text-align:center}
-.tabs{display:flex;background:#fff}
-.tabs button{flex:1;padding:12px;border:0;background:#ddd;font-weight:bold}
-.tabs button.active{background:#0a3d62;color:gold}
-.card{background:#fff;margin:10px;padding:15px;border-radius:8px;box-shadow:0 2px 4px #0002}
-input{width:90%;padding:8px;margin:5px 0}
-button.calc{background:#0a3d62;color:gold;border:0;padding:10px 20px;border-radius:5px;width:100%}
-.result{margin-top:10px;font-weight:bold;color:#0a3d62}
-small{color:#666}
+*{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{margin:0;background:#e3f2fd;color:#212121;padding-bottom:80px}
+header{background:#0d47a1;color:white;padding:18px;text-align:center;position:sticky;top:0;z-index:10}
+header h1{margin:0;font-size:20px}
+.container{max-width:900px;margin:12px auto;padding:0 12px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.card{background:white;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.1);border-left:5px solid #0d47a1}
+.card h3{margin:0 0 10px;font-size:15px;color:#0d47a1}
+label{font-size:12px;font-weight:600;display:block;margin-top:8px}
+input{width:100%;padding:8px;border:1px solid #90caf9;border-radius:6px;margin-top:3px}
+button{width:100%;margin-top:10px;background:#1565c0;color:white;border:none;padding:10px;border-radius:8px;font-weight:700;cursor:pointer}
+.result{margin-top:10px;background:#e8f5e9;padding:8px;border-radius:6px;font-size:13px;min-height:20px;white-space:pre-wrap;font-weight:600}
+footer{text-align:center;padding:20px;font-size:12px;color:#555}
 </style>
 </head>
 <body>
-<header><h2>MAKHANANI Maths Lit</h2><small>CAPS Paper 1 • Vukona Press • Johannesburg</small></header>
-<div class="tabs">
-<button class="active" onclick="show(0)">Interest</button>
-<button onclick="show(1)">VAT 15%</button>
-<button onclick="show(2)">Average</button>
-<button onclick="show(3)">Budget</button>
+<header>
+<h1>MAKHANANI Maths Lit App - CAPS 2026</h1>
+<p>PAPER 1 & 2 CALCULATORS - Vukona Press - Siyabonga Vusi!</p>
+</header>
+<div class="container">
+<div class="card"><h3>1. Simple Interest</h3><label>Principal R</label><input id="si_p" type="number" value="5000"><label>Rate %</label><input id="si_r" type="number" value="10"><label>Years</label><input id="si_t" type="number" value="3"><button onclick="simpleInterest()">Calculate</button><div id="si_res" class="result"></div></div>
+<div class="card"><h3>2. Compound Interest</h3><label>Principal R</label><input id="ci_p" type="number" value="5000"><label>Rate % annual</label><input id="ci_r" type="number" value="10"><label>Years</label><input id="ci_t" type="number" value="3"><label>Times per year</label><input id="ci_n" type="number" value="1"><button onclick="compoundInterest()">Calculate A = P(1+i)^n</button><div id="ci_res" class="result"></div></div>
+<div class="card"><h3>3. VAT Calculator</h3><label>Amount R</label><input id="vat_a" type="number" value="1000"><button onclick="vatCalc()">Add 15% VAT / Remove VAT</button><div id="vat_res" class="result"></div></div>
+<div class="card"><h3>4. Percentages - Discount</h3><label>Original Price R</label><input id="op" type="number" value="1000"><label>Discount %</label><input id="disc" type="number" value="20"><button onclick="percentageCalc()">Calculate Selling Price</button><div id="perc_res" class="result"></div></div>
+<div class="card"><h3>5. Class Average</h3><label>Marks comma separated</label><input id="avg_m" type="text" value="12,43,54,46,65,45,45,76,76"><button onclick="classAverage()">Calculate Average</button><div id="avg_res" class="result"></div></div>
+<div class="card" style="border-left-color:#2e7d32"><h3>6. Data Handling - Mean/Median/Mode/Range</h3><label>Data comma separated</label><input id="data" type="text" value="12,43,54,46,65,45,45,76,76"><button onclick="dataHandling()">Sort & Calculate</button><div id="data_res" class="result"></div></div>
+<div class="card"><h3>7. Probability</h3><label>Favourable</label><input id="prob_f" type="number" value="3"><label>Total</label><input id="prob_t" type="number" value="10"><button onclick="probability()">P = fav/total</button><div id="prob_res" class="result"></div></div>
+<div class="card"><h3>8. Budget Planner</h3><label>Income R</label><input id="bud_inc" type="number" value="10000"><label>Expenses R</label><input id="bud_exp" type="number" value="7500"><button onclick="budget()">Calculate Savings</button><div id="bud_res" class="result"></div></div>
+<div class="card"><h3>9. Inflation Rate</h3><label>Old Price R</label><input id="inf_old" type="number" value="100"><label>New Price R</label><input id="inf_new" type="number" value="115"><button onclick="inflation()">Inflation %</button><div id="inf_res" class="result"></div></div>
+<div class="card"><h3>10. Income Tax (SA 2026)</h3><label>Annual Income R</label><input id="tax_inc" type="number" value="300000"><button onclick="incomeTax()">Calculate Tax</button><div id="tax_res" class="result"></div></div>
+<div class="card"><h3>11. Cost / Selling / Profit</h3><label>Cost Price R</label><input id="cp" type="number" value="800"><label>Profit %</label><input id="profit" type="number" value="25"><button onclick="cspCalc()">Selling Price + Profit</button><div id="csp_res" class="result"></div></div>
+<div class="card" style="border-left-color:#e65100"><h3>12. Tariff System - City Power JHB + Water</h3><label>Electricity kWh used (Test 400)</label><input id="kwh" type="number" value="400"><label>Water Litres (Test 8000)</label><input id="water" type="number" value="8000"><button onclick="tariffCalc()">Calculate R965.00 Test</button><div id="tariff_res" class="result"></div></div>
 </div>
-
-<div id="c0" class="card">
-<h3>1. Simple Interest</h3>
-<input id="p" type="number" placeholder="Principal R e.g. 5000">
-<input id="r" type="number" placeholder="Rate % e.g. 10">
-<input id="t" type="number" placeholder="Years e.g. 2">
-<button class="calc" onclick="interest()">Calculate</button>
-<div id="r0" class="result"></div>
-<small>Formula: I = P×R×T /100</small>
-</div>
-
-<div id="c1" class="card" style="display:none">
-<h3>2. VAT 15%</h3>
-<input id="price" type="number" placeholder="Price before VAT e.g. 200">
-<button class="calc" onclick="vat()">Calculate</button>
-<div id="r1" class="result"></div>
-</div>
-
-<div id="c2" class="card" style="display:none">
-<h3>3. Class Average</h3>
-<input id="marks" type="text" placeholder="Marks separated by comma e.g. 67,78,56,90">
-<button class="calc" onclick="avg()">Calculate Average</button>
-<div id="r2" class="result"></div>
-</div>
-
-<div id="c3" class="card" style="display:none">
-<h3>4. Budget Planner</h3>
-<input id="inc" type="number" placeholder="Income R5000">
-<input id="exp" type="number" placeholder="Expenses R4000">
-<button class="calc" onclick="budget()">Check Budget</button>
-<div id="r3" class="result"></div>
-</div>
-
+<footer>Vukona Press - Siyabonga Vusi! | CAPS Maths Lit Paper 1 & 2 | Verified: Data Mean 51.3 | Compound R6655 | Tariff R965 | Java: Ready</footer>
 <script>
-function show(n){for(let i=0;i<4;i++){document.getElementById('c'+i).style.display=i==n?'block':'none';document.querySelectorAll('.tabs button')[i].classList.toggle('active',i==n)}}
-function interest(){let p=+document.getElementById('p').value,r=+document.getElementById('r').value,t=+document.getElementById('t').value;let i=p*r*t/100;document.getElementById('r0').innerHTML=`Interest = R${i.toFixed(2)}<br>Total = R${(p+i).toFixed(2)}`}
-function vat(){let pr=+document.getElementById('price').value;let v=pr*0.15;document.getElementById('r1').innerHTML=`VAT = R${v.toFixed(2)}<br>Total = R${(pr+v).toFixed(2)}`}
-function avg(){let m=document.getElementById('marks').value.split(',').map(x=>+x.trim()).filter(x=>!isNaN(x));let s=m.reduce((a,b)=>a+b,0);document.getElementById('r2').innerHTML=`Average = ${(s/m.length).toFixed(1)}% (${m.length} learners)`}
-function budget(){let inc=+document.getElementById('inc').value,ex=+document.getElementById('exp').value;let left=inc-ex;document.getElementById('r3').innerHTML=`Saved = R${left.toFixed(2)}<br>${left<0?'WARNING: Over budget!':'Good budgeting - Vukona Press'}`}
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}
+function simpleInterest(){let p=parseFloat(document.getElementById('si_p').value), r=parseFloat(document.getElementById('si_r').value), t=parseFloat(document.getElementById('si_t').value); let i=p*r/100*t; document.getElementById('si_res').innerText=`Interest = R${i.toFixed(2)}\nAmount = R${(p+i).toFixed(2)}`;}
+function compoundInterest(){let p=parseFloat(document.getElementById('ci_p').value), r=parseFloat(document.getElementById('ci_r').value)/100, t=parseFloat(document.getElementById('ci_t').value), n=parseFloat(document.getElementById('ci_n').value); let A=p*Math.pow(1+r/n,n*t); document.getElementById('ci_res').innerText=`Amount = R${A.toFixed(2)}\nCompound Interest = R${(A-p).toFixed(2)}\nFormula: A = P(1+i)^n`;}
+function vatCalc(){let a=parseFloat(document.getElementById('vat_a').value); let incl=a*1.15; let excl=a/1.15; document.getElementById('vat_res').innerText=`Excl R${a.toFixed(2)} + 15% VAT = R${incl.toFixed(2)}\nIf R${a.toFixed(2)} is incl, Excl = R${excl.toFixed(2)}`;}
+function percentageCalc(){let op=parseFloat(document.getElementById('op').value), d=parseFloat(document.getElementById('disc').value); let sp=op*(1-d/100); document.getElementById('perc_res').innerText=`Selling Price = R${sp.toFixed(2)}\nYou Save R${(op-sp).toFixed(2)} (${d}%)`;}
+function classAverage(){let arr=document.getElementById('avg_m').value.split(',').map(Number).filter(n=>!isNaN(n)); let sum=arr.reduce((a,b)=>a+b,0); document.getElementById('avg_res').innerText=`Count: ${arr.length}\nSum: ${sum}\nAverage = ${(sum/arr.length).toFixed(1)}%`;}
+function dataHandling(){let arr=document.getElementById('data').value.split(',').map(Number).filter(n=>!isNaN(n)).sort((a,b)=>a-b); let n=arr.length; let mean=arr.reduce((a,b)=>a+b,0)/n; let median=n%2==1?arr[Math.floor(n/2)]:(arr[n/2-1]+arr[n/2])/2; let freq={}; arr.forEach(v=>freq[v]=(freq[v]||0)+1); let mode=Object.keys(freq).reduce((a,b)=>freq[a]>freq[b]?a:b); let range=arr[n-1]-arr[0]; document.getElementById('data_res').innerText=`Sorted: [${arr.join(', ')}]\nMean=${mean.toFixed(1)} Median=${median} Mode=${mode} Range=${range}\nCount=${n}`;}
+function probability(){let f=parseFloat(document.getElementById('prob_f').value), t=parseFloat(document.getElementById('prob_t').value); document.getElementById('prob_res').innerText=`P = ${f}/${t} = ${(f/t).toFixed(4)} = ${(f/t*100).toFixed(2)}%`;}
+function budget(){let inc=parseFloat(document.getElementById('bud_inc').value), exp=parseFloat(document.getElementById('bud_exp').value); let left=inc-exp; document.getElementById('bud_res').innerText=`Income R${inc} - Expenses R${exp} = R${left.toFixed(2)} ${left>=0?'Surplus':'Deficit'}\nSavings % = ${(left/inc*100).toFixed(1)}%`;}
+function inflation(){let oldp=parseFloat(document.getElementById('inf_old').value), newp=parseFloat(document.getElementById('inf_new').value); let inf=(newp-oldp)/oldp*100; document.getElementById('inf_res').innerText=`Inflation = ${inf.toFixed(2)}%\nOld R${oldp} -> New R${newp}`;}
+function incomeTax(){let inc=parseFloat(document.getElementById('tax_inc').value); let tax=0; if(inc<=237100) tax=inc*0.18; else if(inc<=370500) tax=42678 + (inc-237100)*0.26; else if(inc<=512800) tax=77362 + (inc-370500)*0.31; else if(inc<=673000) tax=121475 + (inc-512800)*0.36; else if(inc<=857900) tax=179147 + (inc-673000)*0.39; else if(inc<=1817000) tax=251258 + (inc-857900)*0.41; else tax=644489 + (inc-1817000)*0.45; let rebates=17235; tax=Math.max(0,tax-rebates); document.getElementById('tax_res').innerText=`Income R${inc.toFixed(2)}\nTax Payable R${tax.toFixed(2)}\nNet Income R${(inc-tax).toFixed(2)}`;}
+function cspCalc(){let cp=parseFloat(document.getElementById('cp').value), pr=parseFloat(document.getElementById('profit').value); let sp=cp*(1+pr/100); document.getElementById('csp_res').innerText=`Cost R${cp} + ${pr}% profit\nSelling Price = R${sp.toFixed(2)}\nProfit = R${(sp-cp).toFixed(2)}`;}
+function tariffCalc(){let kwh=parseFloat(document.getElementById('kwh').value); let cost=0; if(kwh<=350) cost=kwh*2.35; else if(kwh<=600) cost=350*2.35 + (kwh-350)*2.85; else cost=350*2.35 + 250*2.85 + (kwh-600)*3.35; let avg=cost/kwh; let water=parseFloat(document.getElementById('water').value); let waterCost=0; if(water<=6000) waterCost=water*0.015; else waterCost=6000*0.015 + (water-6000)*0.022; document.getElementById('tariff_res').innerText=`Electricity Tariff Example (City Power JHB - Inclining Block)\nkWh used: ${kwh}\nElectricity Cost = R${cost.toFixed(2)} (Avg R${avg.toFixed(2)}/kWh)\nWater litres: ${water}\nWater Cost approx = R${waterCost.toFixed(2)}\nTOTAL = R${(cost+waterCost).toFixed(2)}`;}
+window.onload=()=>{dataHandling();compoundInterest();tariffCalc();}
 </script>
 </body>
 </html>

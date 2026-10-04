@@ -10,7 +10,7 @@
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class MathsLitApp {
+public class MathsLitApp_FULL {
     private static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -97,44 +97,16 @@ public class MathsLitApp {
     }
 
     public static void calculateDataHandling() {
-        System.out.print("Data comma separated: ");
-        sc.nextLine();
-        String input = sc.nextLine();
-        if (input == null || input.trim().isEmpty()) {
-            System.out.println("No data entered.");
-            return;
-        }
-
-        String[] parts = input.split(",");
-        double[] data = new double[parts.length];
-        for (int i = 0; i < parts.length; i++) {
-            data[i] = Double.parseDouble(parts[i].trim());
-        }
-
-        Arrays.sort(data);
-        double sum = 0;
-        for (double d : data) sum += d;
-        double mean = sum / data.length;
-        double median = data.length % 2 == 0
-                ? (data[data.length / 2 - 1] + data[data.length / 2]) / 2
-                : data[data.length / 2];
-        double range = data[data.length - 1] - data[0];
-
-        double mode = data[0];
-        int maxCount = 0;
-        for (int i = 0; i < data.length; i++) {
-            int count = 0;
-            for (double d : data) {
-                if (d == data[i]) count++;
-            }
-            if (count > maxCount) {
-                maxCount = count;
-                mode = data[i];
-            }
-        }
-
-        System.out.printf("Sorted: %s%nMean=%.1f Median=%.0f Mode=%.0f Range=%.0f%n",
-                Arrays.toString(data), mean, median, mode, range);
+        System.out.print("Data comma separated: "); sc.nextLine(); String input=sc.nextLine();
+        String[] parts=input.split(","); double[] data=new double[parts.length];
+        for(int i=0;i<parts.length;i++) data[i]=Double.parseDouble(parts[i].trim());
+        Arrays.sort(data); double sum=0; for(double d:data) sum+=d;
+        double mean=sum/data.length;
+        double median=data.length%2==0 ? (data[data.length/2-1]+data[data.length/2])/2 : data[data.length/2];
+        double range=data[data.length-1]-data[0];
+        double mode=data[0]; int maxCount=0;
+        for(int i=0;i<data.length;i++){int c=0; for(double d:data) if(d==data[i]) c++; if(c>maxCount){maxCount=c; mode=data[i];}}
+        System.out.printf("Sorted: %s%nMean=%.1f Median=%.0f Mode=%.0f Range=%.0f%n", Arrays.toString(data), mean, median, mode, range);
     }
 
     public static void calculateProbability() {
@@ -146,24 +118,19 @@ public class MathsLitApp {
     }
 
     public static void calculateBudget() {
-        System.out.print("Income R: ");
-        double income = sc.nextDouble();
-        System.out.print("Expenses R: ");
-        double expenses = sc.nextDouble();
-        double saved = income - expenses;
+        System.out.print("Income R: "); double income=sc.nextDouble();
+        System.out.print("Expenses R: "); double expenses=sc.nextDouble();
+        double saved=income-expenses;
         System.out.printf("Saved = R%.2f%n", saved);
-        System.out.println(saved < 0 ? "WARNING: Overspending - Vukona Press" : "Good budgeting - Vukona Press");
+        System.out.println(saved < 0 ? "WARNING: Overspending! Budget needs attention." : "Good budgeting - Vukona Press");
     }
 
     public static void calculateInflation() {
-        System.out.print("Current Price R: ");
-        double price = sc.nextDouble();
-        System.out.print("Inflation rate %: ");
-        double inf = sc.nextDouble();
-        System.out.print("Years: ");
-        double years = sc.nextDouble();
-        double future = price * Math.pow(1 + inf / 100, years);
-        System.out.printf("Future Price after %.0f years = R%.2f%nIncrease = R%.2f%n", years, future, future - price);
+        System.out.print("Current Price R: "); double price=sc.nextDouble();
+        System.out.print("Inflation rate %: "); double inf=sc.nextDouble();
+        System.out.print("Years: "); double years=sc.nextDouble();
+        double future = price*Math.pow(1+inf/100, years);
+        System.out.printf("Future Price after %.0f years = R%.2f%nIncrease = R%.2f%n", years, future, future-price);
     }
 
     public static void calculateIncomeTax() {
@@ -179,39 +146,34 @@ public class MathsLitApp {
         double after = income-tax;
         System.out.printf("Income Tax = R%.2f%nAfter Tax = R%.2f (Monthly R%.2f)%n", tax, after, after/12);
     }
-
+    
     public static void calculateCostSelling() {
         System.out.println("1. Profit/Loss 2. Mark-up% 3. Discount");
-        System.out.print("Choose: ");
-        int c = sc.nextInt();
-        if (c == 1) {
-            System.out.print("Cost Price R: ");
-            double cp = sc.nextDouble();
-            System.out.print("Selling Price R: ");
-            double sp = sc.nextDouble();
-            double profit = sp - cp;
-            double percentProfit = cp == 0 ? 0 : profit / cp * 100;
-            System.out.printf("Profit/Loss = R%.2f (%.1f%%)%n", profit, percentProfit);
-        } else if (c == 2) {
-            System.out.print("Cost Price R: ");
-            double cp = sc.nextDouble();
-            System.out.print("Mark-up %: ");
-            double mu = sc.nextDouble();
-            double sp = cp * (1 + mu / 100);
+        System.out.print("Choose: "); int c=sc.nextInt();
+        if(c==1){
+            System.out.print("Cost Price R: "); double cp=sc.nextDouble();
+            System.out.print("Selling Price R: "); double sp=sc.nextDouble();
+            double profit=sp-cp;
+            double percentage = cp != 0 ? (profit/cp)*100 : 0;
+            System.out.printf("Profit/Loss = R%.2f (%.1f%%)%n", profit, percentage);
+        }
+        else if(c==2){
+            System.out.print("Cost Price R: "); double cp=sc.nextDouble();
+            System.out.print("Mark-up %: "); double mu=sc.nextDouble();
+            double sp=cp*(1+mu/100);
             System.out.printf("Selling Price = R%.2f%n", sp);
-        } else {
-            System.out.print("Original Price R: ");
-            double op = sc.nextDouble();
-            System.out.print("Discount %: ");
-            double d = sc.nextDouble();
-            double sp = op * (1 - d / 100);
-            System.out.printf("Selling Price after discount = R%.2f. You save R%.2f%n", sp, op - sp);
+        }
+        else{
+            System.out.print("Original Price R: "); double op=sc.nextDouble();
+            System.out.print("Discount %: "); double d=sc.nextDouble();
+            double sp=op*(1-d/100);
+            System.out.printf("Selling Price after discount = R%.2f You save R%.2f%n", sp, op-sp);
         }
     }
 
     public static void calculateTariff() {
         System.out.println("Electricity Tariff Example (City Power JHB - Inclining Block)");
-        System.out.print("kWh used: "); double kwh=sc.nextDouble();
+        System.out.print("kwh used: "); double kwh=sc.nextDouble();
         double cost=0;
         if(kwh<=350) cost=kwh*2.35;
         else if(kwh<=600) cost=350*2.35 + (kwh-350)*2.85;

@@ -23,7 +23,7 @@ public class MathsLitApp {
         else if(choose == 2) {
             System.out.print("Price before VAT: R"); double price = sc.nextDouble();
             System.out.println("VAT (15%): R" + (price * 0.15));
-            System.out.println("Total to pay: R" + (price * 1.15));
+            System.out.printf("Total to pay: R%.2f%n", price * 1.15);
         }
         else if(choose == 3) {
             System.out.print("How many learners? "); int n = sc.nextInt();

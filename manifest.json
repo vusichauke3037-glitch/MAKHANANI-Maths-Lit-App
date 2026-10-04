@@ -8,9 +8,16 @@
   "theme_color": "#0a3d62",
   "icons": [
     {
-      "src": "https://via.placeholder.com/512x512.png?text=MP",
+      "src": "https://cdn-icons-png.flaticon.com/512/3209/3209072.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3209/3209072.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }

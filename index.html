@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAKHANANI Maths Lit</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a3d62">
+<style>
+body{font-family:Arial;background:#f4f6f8;margin:0}
+header{background:#0a3d62;color:gold;padding:15px;text-align:center}
+.tabs{display:flex;background:#fff}
+.tabs button{flex:1;padding:12px;border:0;background:#ddd;font-weight:bold}
+.tabs button.active{background:#0a3d62;color:gold}
+.card{background:#fff;margin:10px;padding:15px;border-radius:8px;box-shadow:0 2px 4px #0002}
+input{width:90%;padding:8px;margin:5px 0}
+button.calc{background:#0a3d62;color:gold;border:0;padding:10px 20px;border-radius:5px;width:100%}
+.result{margin-top:10px;font-weight:bold;color:#0a3d62}
+small{color:#666}
+</style>
+</head>
+<body>
+<header><h2>MAKHANANI Maths Lit</h2><small>CAPS Paper 1 • Vukona Press • Johannesburg</small></header>
+<div class="tabs">
+<button class="active" onclick="show(0)">Interest</button>
+<button onclick="show(1)">VAT 15%</button>
+<button onclick="show(2)">Average</button>
+<button onclick="show(3)">Budget</button>
+</div>
+
+<div id="c0" class="card">
+<h3>1. Simple Interest</h3>
+<input id="p" type="number" placeholder="Principal R e.g. 5000">
+<input id="r" type="number" placeholder="Rate % e.g. 10">
+<input id="t" type="number" placeholder="Years e.g. 2">
+<button class="calc" onclick="interest()">Calculate</button>
+<div id="r0" class="result"></div>
+<small>Formula: I = P×R×T /100</small>
+</div>
+
+<div id="c1" class="card" style="display:none">
+<h3>2. VAT 15%</h3>
+<input id="price" type="number" placeholder="Price before VAT e.g. 200">
+<button class="calc" onclick="vat()">Calculate</button>
+<div id="r1" class="result"></div>
+</div>
+
+<div id="c2" class="card" style="display:none">
+<h3>3. Class Average</h3>
+<input id="marks" type="text" placeholder="Marks separated by comma e.g. 67,78,56,90">
+<button class="calc" onclick="avg()">Calculate Average</button>
+<div id="r2" class="result"></div>
+</div>
+
+<div id="c3" class="card" style="display:none">
+<h3>4. Budget Planner</h3>
+<input id="inc" type="number" placeholder="Income R5000">
+<input id="exp" type="number" placeholder="Expenses R4000">
+<button class="calc" onclick="budget()">Check Budget</button>
+<div id="r3" class="result"></div>
+</div>
+
+<script>
+function show(n){for(let i=0;i<4;i++){document.getElementById('c'+i).style.display=i==n?'block':'none';document.querySelectorAll('.tabs button')[i].classList.toggle('active',i==n)}}
+function interest(){let p=+document.getElementById('p').value,r=+document.getElementById('r').value,t=+document.getElementById('t').value;let i=p*r*t/100;document.getElementById('r0').innerHTML=`Interest = R${i.toFixed(2)}<br>Total = R${(p+i).toFixed(2)}`}
+function vat(){let pr=+document.getElementById('price').value;let v=pr*0.15;document.getElementById('r1').innerHTML=`VAT = R${v.toFixed(2)}<br>Total = R${(pr+v).toFixed(2)}`}
+function avg(){let m=document.getElementById('marks').value.split(',').map(x=>+x.trim()).filter(x=>!isNaN(x));let s=m.reduce((a,b)=>a+b,0);document.getElementById('r2').innerHTML=`Average = ${(s/m.length).toFixed(1)}% (${m.length} learners)`}
+function budget(){let inc=+document.getElementById('inc').value,ex=+document.getElementById('exp').value;let left=inc-ex;document.getElementById('r3').innerHTML=`Saved = R${left.toFixed(2)}<br>${left<0?'WARNING: Over budget!':'Good budgeting - Vukona Press'}`}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}
+</script>
+</body>
+</html>
